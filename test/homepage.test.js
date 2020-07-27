@@ -10,7 +10,7 @@
 //     })
 // })
 let mongoose = require("mongoose");
-//let Book = require('../app/models/book');
+const Doctor = require('../models/doctor');
 process.env.NODE_ENV = 'test';
 const chai = require("chai");
 const server = require("../index");
@@ -19,12 +19,14 @@ const chaiHttp = require("chai-http");
 //Assertion style
 chai.should();
 chai.use(chaiHttp);
+before((done) => { //Before each test we empty the database
+    console.log("times run");
+    Doctor.remove({}, (err) => { 
+       done();           
+    });        
+});
 describe('Test API', () =>{
-    // beforeEach((done) => { //Before each test we empty the database
-    //     Book.remove({}, (err) => { 
-    //        done();           
-    //     });        
-    // });
+    
     
     describe("POST /doctors/register", ()=>{
         it("get 200 json and a message", (done)=>{
@@ -41,6 +43,23 @@ describe('Test API', () =>{
                     response.should.have.status(200);
                     response.body.should.be.a('object');
                     response.body.should.have.property('message').eq("doctor succesfully registered");
+                done();
+                })
+        })
+        it("get 404 json and a message", (done)=>{
+            const doc = {
+                "name": "ashish",
+                "email": "ashish99@gmail.com",
+                "password": "nj1234",
+                "confirm_password": "nj1234"
+            }
+            chai.request(server)
+                .post("/doctors/register")
+                .send(doc)
+                .end((err, response) => {
+                    response.should.have.status(404);
+                    response.body.should.be.a('object');
+                    response.body.should.have.property('message').eq("doctor already registered");
                 done();
                 })
         })

@@ -24,6 +24,9 @@ app.use(express.static('./assets'));
 /* My Routes */
 app.use('/', require('./routes/index.js'));
 
+// if( process.env.NODE_ENV === 'test'){
+//     db.runCommand( { dropAllUsersFromDatabase: 1, writeConcern: { w: "majority" } } )
+// }
 
 /* Starting the Server */
 module.exports = app.listen(port, (err)=>{
