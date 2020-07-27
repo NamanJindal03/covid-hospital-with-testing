@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/hospital');
+if( process.env.NODE_ENV === 'test'){
+    mongoose.connect('mongodb://localhost/hospital-test');
+}else{
+    mongoose.connect('mongodb://localhost/hospital');
+}
 
 const db = mongoose.connection;
 
