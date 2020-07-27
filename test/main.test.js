@@ -200,16 +200,16 @@ describe('Patient API', () =>{
                 done();
                 })
         })
-        it("report - Invalid Paitent Details => status 401 with message", (done)=>{
-            let patientID = "ehiewhfoew"
+        it("report - Invalid Paitent Details => status 500 with message", (done)=>{
+            let patientID = "55153a8014829a865bbf700d"
             chai.request(server)
                 .post(`/patients/${patientID}/create-report`)
                 //.send(patient)
                 .set({ "Authorization": `Bearer ${token}` })
                 .end((err, response) => {
-                    response.should.have.status(401);
+                    response.should.have.status(500);
                     response.body.should.be.a('object');
-                    response.body.should.have.property('message').eq("Invalid details");
+                    response.body.should.have.property('message').eq("Internal Server Error");
                 done();
                 })
         })
@@ -249,16 +249,16 @@ describe('Patient API', () =>{
                 done();
                 })
         })
-        it("report all- Invalid Paitent Details => status 401 with message", (done)=>{
-            let patientID = "ehiewhfoew"
+        it("report all- Invalid Paitent Details => status 500 with message", (done)=>{
+            let patientID = "55153a8014829a865bbf700d"
             chai.request(server)
                 .get(`/patients/${patientID}/all-reports`)
                 //.send(patient)
                 .set({ "Authorization": `Bearer ${token}` })
                 .end((err, response) => {
-                    response.should.have.status(401);
+                    response.should.have.status(500);
                     response.body.should.be.a('object');
-                    response.body.should.have.property('message').eq("Invalid details");
+                    response.body.should.have.property('message').eq("Internal Server Error");
                 done();
                 })
         })
