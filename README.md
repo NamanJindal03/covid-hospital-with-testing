@@ -1,6 +1,7 @@
 # Covid 
 # About
 This project has some API's to hasten the process of viewing patients records and keeping their status up to date
+Testing od the API is also done using MOCHA & CHAI
 
 # How to Use
 1. Clone this project
@@ -12,7 +13,10 @@ npm start
 ```
 4. If you want to change the JWTSECRET you can change in .env file
 5. Your project is ready
-
+6. If you want to test the whole working then Enter these commands
+```
+npm test
+```
 # Features 
 ## POSTMAN LINK
 ```
@@ -75,4 +79,8 @@ This Application follows MVC Architecture
 2. Controllers - Core logic(contains functions and renders views)
 3. models - schema for databases are defined in here
 4. routes - contains all routes defined in the application
+5. Test - All the test files exist here
 
+# Testing
+main.test.js has testing api for patient and doctor
+report.test.js has testing api for reports
