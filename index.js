@@ -26,7 +26,7 @@ app.use('/', require('./routes/index.js'));
 
 
 /* Starting the Server */
-app.listen(port, (err)=>{
+module.exports = app.listen(port, (err)=>{
     if(err){
         console.log(`There is an error: ${err}`);
         return;

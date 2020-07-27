@@ -109,3 +109,9 @@ module.exports.allReports = async (req,res) =>{
           });
     }
 }
+
+module.exports.test = function(req, res) {
+    return res.status(200).json({
+        message: "test succesfull"
+    })
+}
